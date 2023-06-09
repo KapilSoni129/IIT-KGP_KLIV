@@ -7,9 +7,6 @@ import Footer from './shared/Footer/components/footer';
 
 import Landing from './sections/Landing/landing';
 import About from './sections/About/about';
-import Services from './sections/Services/services';
-import Contact from './sections/Contact/contact';
-import Team from './sections/Team/team';
 import Review from './sections/Review/review';
 
 function App() {
@@ -27,9 +24,6 @@ function App() {
       <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/team" element={<Team />} />
             <Route path="/review" element={<Review />} />
             <Route path="/*" element={<Navigate to="/" />} />
           </Routes>

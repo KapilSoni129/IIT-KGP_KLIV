@@ -31,9 +31,9 @@ const Footer = () => {
       <footer style={{ backgroundColor: 'white' }}>
         <div className="footer-section">
           <div className="footer-left">
-            <span>KLIV</span>
+            <span>FedERA</span>
           </div>
-          <p>About section</p>
+          <p>Federated Learning is a machine learning technique for training models on distributed data without sharing it. In traditional machine learning, large datasets must first be collected and then sent to one location where they can be combined before the model is trained on them. However, this process can cause privacy concerns as sensitive personal data may become publicly available. Federated learning attempts to address these concerns by keeping individual user’s data local while still allowing for powerful powerful statistical analysis that can be used to create accurate models at scale.</p>
 
           <div className="footer-about">
             <a href="https://twitter.com">
@@ -58,8 +58,6 @@ const Footer = () => {
             <li>Home</li>
             <li>About Us</li>
             <li>Services</li>
-            <li>Terms of Service</li>
-            <li>Privacy Policy</li>
           </ul>
         </div>
         <div className="footer-section">
@@ -69,9 +67,7 @@ const Footer = () => {
             </b>
             <li>Collaborative Learning</li>
             <li>Web Development</li>
-            <li>Product Management</li>
-            <li>Marketing</li>
-            <li>Graphic Design</li>
+            <li>Android Development</li>
           </ul>
         </div>
         <div className="footer-section">
@@ -84,16 +80,16 @@ const Footer = () => {
             <p>United States</p>
             {/* <p> </p> */}
             <p>
-              <b>Phone:</b> +1 555-123-4567
+              <b>Phone:</b>
             </p>
             <p>
-              <b>Email:</b> info@example.com
+              <b>Email:</b> fedra.team@gmail.com
             </p>
           </div>
         </div>
         <div className="footer-section footer-bottom">
           <p className="copyright">
-            &copy; KLIV All Rights Reserved. Developed by KAPIL SONI
+            &copy; FedERA All Rights Reserved. Developed by Kapil Soni
           </p>
         </div>
         {/* <div className="scroll-to-top" onClick={handleScrollToTop}>

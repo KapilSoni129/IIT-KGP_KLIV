@@ -27,7 +27,7 @@ const Navigation = () => {
           <div className="bar"></div>
           <div className="bar"></div>
         </div>
-        <span className="company-name">KLIV</span>
+        <span className="company-name">FedERA</span>
       </div>
       <ul>
         <li>

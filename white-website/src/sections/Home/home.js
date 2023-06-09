@@ -8,9 +8,9 @@ function Home() {
   return (
     <div className='hero'>
       <div className="content-left">
-        <h1>The future is federated.</h1>
+        <h1>The future is distributed learning.</h1>
         <p>
-          We help developers solve the world's most important problems by unlocking the value from sensitive data, without increasing the risk.
+         FedERA is a highly dynamic and customizable framework that can accommodate many use cases with flexibility by implementing several functionalities over different federated learning algorithms, and essentially creating a plug-and-play architecture to accommodate different use cases..
         </p>
         <button className="card-button">Get started</button>
       </div>

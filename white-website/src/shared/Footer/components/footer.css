@@ -1,99 +1,151 @@
 /* Footer.css */
 
 footer {
-    background-color: white;
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-    box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .footer-section {
-    flex: 1 1 auto;
-    margin-bottom: 20px;
-  }
-  
-  .footer-left {
-    display: flex;
-    align-items: center;
-    flex: 1 1 auto;
-  }
-  
-  .footer-left span {
-    font-weight: bold;
-    margin-right: 10px;
-  }
-  
-  .footer-about {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  .footer-about a {
-    margin-right: 10px;
-    color: #000;
-    font-size: 18px;
-  }
-  
-  .footer-about a:hover {
-    color: #888;
-  }
-  
-  .useful-links,
-  .our-services {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .useful-links li,
-  .our-services li {
-    margin-bottom: 10px;
-  }
-  
-  .contact-us p {
-    margin: 5px 0;
-  }
-  
-  /* Updated code for footer-left section */
-  .footer-section:nth-child(1) {
-    flex: 1 1 auto;
-  }
-  
-  /* Updated code for useful-links section */
-  .useful-links {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Updated code for our-services section */
-  .our-services {
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Updated code for contact-us section */
-  .contact-us {
-    flex: 1 1 auto;
-  }
-  
-  /* Updated code for copyright section */
-  .footer-section:last-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex: 1 1 100%;
-  }
-  
-  .footer-section:last-child .copyright {
-    text-align: center;
-    font-size: 14px;
-    color: #888;
-    width: 100%;
-  }
-  
-  /* Scroll to top button */
+  background-color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* Added */
+}
 
-  
+.footer-section {
+  flex: 1 1 auto;
+  margin-bottom: 20px;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  flex: 1 1 auto;
+}
+
+.footer-left span {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.footer-about {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.footer-about a {
+  margin-right: 10px;
+  color: #000;
+  font-size: 18px;
+}
+
+.footer-about a:hover {
+  color: #888;
+}
+
+.useful-links {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  border-right: none;
+  justify-content: flex-end;
+}
+
+.useful-links li,
+.our-services li {
+  margin-bottom: 10px;
+}
+
+.contact-us p {
+  margin: 5px 0;
+}
+
+/* Updated code for footer-left section */
+.footer-section:nth-child(1) {
+  flex: 1 1 50%;
+}
+
+/* Updated code for useful-links section */
+.useful-links {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  border-right: none;
+  justify-content: flex-end;
+}
+
+/* Updated code for our-services section */
+.our-services {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  border-left: none;
+}
+
+/* Updated code for contact-us section */
+.contact-us {
+  flex: 1 1 auto;
+}
+
+/* Updated code for newsletter section */
+.newsletter-container {
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin-bottom: 1px;
+}
+
+.newsletter-form {
+  display: flex;
+  align-items: center; /* Added */
+  margin-right: 300px;
+  margin-left: 305px;
+}
+
+.newsletter-form input[type='email'] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 5px;
+  flex-grow: 1;
+}
+
+/* Updated code for copyright section */
+.footer-section:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 100%;
+}
+
+.footer-section:last-child .copyright {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  width: 100%;
+}
+
+/* Added code for social media icons */
+.social-media {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+}
+
+.social-media li {
+  margin-right: 10px;
+}
+
+.social-media li a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #888;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+}
+
+.social-media li a:hover {
+  background-color: #000;
+  color: #fff;
+}

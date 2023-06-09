@@ -1,0 +1,42 @@
+.service-area{
+  background-color: #ebebeb;
+  flex-direction:  column;
+  padding: 10px;
+  height: 80vh;
+}
+
+.service p{
+  font-size: 14px;
+  padding-top: 10px;
+  text-align: left;
+}
+
+.services-container {
+    height: 70%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .service {
+    flex-direction: column;
+    margin: 20px;
+    margin-top: 50px;
+    max-width: 200px;
+    text-align: center;
+  }
+  
+  .service img {
+    width: 200px;
+    height: 200px;
+    border-radius: 5%;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .service h3 {
+    font-size: 20px;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  
+

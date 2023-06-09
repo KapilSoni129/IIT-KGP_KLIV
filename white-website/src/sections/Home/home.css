@@ -1,0 +1,45 @@
+.hero{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content-left {
+    font-size: 35px;
+    margin-left: 250px;
+    margin-bottom: 100px;
+    width: 30%;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: left;
+  }
+  
+  .content-left h1 {
+    font-size: 50px;
+  }
+  
+  .right-content {
+    margin-right: 100px;
+    margin-bottom: 50px;
+    width: 40%;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: right;
+  }
+  
+  .animated-image {
+    animation: wiggle 2s infinite;
+  }
+  
+  @keyframes wiggle {
+    0% {
+      transform: rotate(0deg);
+    }
+    50% {
+      transform: rotate(10deg);
+    }
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  

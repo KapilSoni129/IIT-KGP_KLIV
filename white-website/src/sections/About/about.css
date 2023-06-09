@@ -1,0 +1,19 @@
+.about-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    opacity: 0;
+    transition: opacity 1s ease-in;
+  }
+  
+  .about-container.fade-in {
+    opacity: 1;
+  }
+  
+  .about-image {
+    max-width: 800px;
+    max-height: 600px;
+    margin-left: 200px;
+  }
+  
+  

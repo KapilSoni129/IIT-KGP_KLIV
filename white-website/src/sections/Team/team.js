@@ -20,7 +20,7 @@ const Person = ({ imgSrc, name, designation, college, description, github, linke
 
 function Team() {
   return (
-    <div>
+    <div className='team-sec'>
       <center>
         <h4>TEAM</h4>
         <h1>Our hardworking team</h1>

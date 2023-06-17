@@ -8,6 +8,8 @@ import Footer from './shared/Footer/components/footer';
 import Landing from './sections/Landing/landing';
 import About from './sections/About/about';
 import Review from './sections/Review/review';
+import LoginForm from './sections/Admin/login';
+import Adminpage from './sections/Admin/Adminpage';
 
 function App() {
 
@@ -25,6 +27,8 @@ function App() {
             <Route path="/" element={<Landing />} />
             <Route path="/about" element={<About />} />
             <Route path="/review" element={<Review />} />
+            <Route path="/admin" element={<LoginForm />} />
+            <Route path="/adminpage" element={<Adminpage />} />
             <Route path="/*" element={<Navigate to="/" />} />
           </Routes>
       </Router>

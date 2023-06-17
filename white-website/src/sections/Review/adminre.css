@@ -1,11 +1,12 @@
-.customer-reviews{
+.admin-reviews{
     align-items: center;
     justify-content: center;
-    background-color: #ebebeb;
+    background-color: #d5d5d5;
     padding: 20px;
+    box-shadow:  0px 2px 8px rgba(0, 0, 0, 0);;
 }
 
-.review-container{
+.admin-container{
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -13,35 +14,36 @@
     margin: 0 auto;
 }
 
-.review-content{
+.admin-content{
     display: flex;
     flex-direction: column;
+    padding-top: 10px;
     position: relative;
+    border: 1px solid #000000;
     background-color: #fff;
     margin: 10px;
     width: 350px;
     height: 300px;
-    border-radius: 5%;
 }
 
-.review-content p{
+.admin-content p{
     font-size: 12px;
     margin-left: 5px;
     margin-right: 5px;
     text-align: center;
 }
 
-.review-content p::before,
-.review-content p::after {
+.admin-content p::before,
+.admin-content p::after {
   content: '"';
   position: relative;
-  font-size: 1em;
+  font-size: 2em;
   color: #000000;
   top: 0;
   left: 0;
 }
 
-.review-content h3{
+.admin-content h3{
     font-size: 18px;
     display: flex;
     position: absolute;
@@ -49,7 +51,7 @@
     left: 10px;
 }
 
-.review-content h4{
+.admin-content h4{
     font-size: 16px;
     display: flex;
     position: absolute;
@@ -59,7 +61,7 @@
 
 }
 
-.stars-container {
+.stars-admin {
     font-size: 32px;
     display: flex;
     flex-direction: row;
@@ -76,7 +78,7 @@
     color: rgb(0, 0, 0);
   }
 
-.review-content .review-image {
+.admin-content .review-image {
     position: absolute;
     bottom: 10px;
     right: 10px;

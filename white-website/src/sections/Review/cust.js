@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import{useNavigate}  from 'react-router-dom';
+
 import './cust.css';
 
 function Cust() {
@@ -16,9 +17,10 @@ function Cust() {
       const response = await axios.get('/api/reviews');
       const reviewsData = response.data.map((review) => ({
         ...review,
-        image: `.../backend/uploads/${review.image}`, // Update the image URL
+        image: `../../../../backend/${review.image}`.replace('\\','/'), // Update the image URL
       }));
       setReviews(reviewsData);
+      console.log(reviewsData);
     } catch (error) {
       console.error('Error fetching reviews:', error);
     }
@@ -42,11 +44,11 @@ function Cust() {
   const handleReviewButtonClick = () => {
     history('/review');
   };
-
+   
   return (
     <div className="customer-reviews">
         <center>
-            <h2>Customer Reviews</h2>
+            <h2>Reviews</h2>
             <hr style={{ width: '40%', borderTop: '2px solid #000' }} /><br></br>
         </center>
         {reviews.length > 0 && (

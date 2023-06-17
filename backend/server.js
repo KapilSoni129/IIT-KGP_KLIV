@@ -6,6 +6,7 @@ const multer = require('multer');
 const cors = require('cors');
 
 const app = express();
+var _fileupload = require("./utils/fileUpload.js")
 
 // MySQL configuration
 const connection = mysql.createConnection({
@@ -25,9 +26,7 @@ const storage = multer.diskStorage({
   },
 });
 
-// Create the multer instance with the storage engine
-const upload = multer({ storage });
-// Serve static files
+// Create the multer instance with the storage engine// Serve static files
 app.use('/uploads', express.static('uploads'));
 
 // Middleware
@@ -50,10 +49,9 @@ connection.connect((error) => {
 });
 
 // Endpoint for receiving reviews
-app.post('/api/reviews', upload.single('image'), (req, res) => {
+app.post('/api/reviews', _fileupload.upload.single('image'), (req, res) => {
   const { name, designation, comment, stars } = req.body;
   const imagePath = req.file.path; // Get the path of the uploaded image
-
   // Store the review and image path in the database
   const sql = 'INSERT INTO reviews (name, designation, comment, stars, image) VALUES (?, ?, ?, ?, ?)';
   connection.query(sql, [name, designation, comment, stars, imagePath], (error, results) => {
@@ -78,10 +76,12 @@ app.get('/api/reviews', (req, res) => {
     } else {
       const reviews = results.map((review) => {
         return {
+          id: review.id,
           name: review.name,
           designation: review.designation,
           comment: review.comment,
           stars: review.stars,
+          image: review.image,
         };
       });
       res.status(200).json(reviews);
@@ -112,6 +112,29 @@ app.put('/api/reviews/:id', (req, res) => {
   );
 });
 
+// Endpoint for deleting a review
+app.delete('/api/reviews/:id', (req, res) => {
+  const { id } = req.params;
+
+  // Check if the ID is undefined
+  if (id === undefined) {
+    return res.status(400).json({ error: 'Invalid review ID' });
+  }
+
+  // Delete the review from the database
+  const sql = 'DELETE FROM reviews WHERE id = ?';
+  connection.query(sql, [id], (error, results) => {
+    if (error) {
+      console.error('Error deleting review:', error);
+      res.sendStatus(500);
+    } else {
+      console.log('Review deleted successfully');
+      res.sendStatus(200);
+    }
+  });
+});
+
+
 // Handle React routing, return all requests to React app
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../white-website/build', 'index.html'));
@@ -119,5 +142,5 @@ app.get('*', (req, res) => {
 
 // Start the server
 app.listen(3000, () => {
-  console.log('Server listening on port 3000');
+  console.log('Server listening on port 3000');
 });

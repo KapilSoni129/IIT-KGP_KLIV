@@ -1,0 +1,58 @@
+
+.content-container {
+  margin-top: 100px; /* Adjust this value to create spacing between navigation and content */
+  padding: 20px;
+}
+
+
+.company-name {
+  margin-left: 10px;
+  align-items: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: #333333;
+}
+
+button, a{
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  align-items: center;
+  text-decoration: none;
+  padding: 10px 10px;
+  transition: color 0.3s ease-in-out;
+}
+
+.card-button {
+  background-color: #0066CC;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+
+.card-button:hover {
+  background-color: #0052A3;
+}
+
+button:hover, a:hover {
+  color: #000000;
+}
+
+.active {
+  font-weight: bold;
+  color: #888888;
+}
+
+
+
+
+  
+

@@ -1,20 +1,30 @@
-const express = require('express');
-const mysql = require('mysql');
-const bodyParser = require('body-parser');
-const path = require('path');
-const multer = require('multer');
-const cors = require('cors');
+import express from "express"
+import mysql from "mysql"
+import bodyParser from "body-parser"
+import path from "path"
+import multer from "multer"
+import cors from "cors"
+import { fileSizeFormatter, upload } from "./utils/fileUpload.js";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import cloudinary from "./utils/cloudinary.js";
+
+import dotenv from  "dotenv";
+
+dotenv.config();
 
 const app = express();
-var _fileupload = require("./utils/fileUpload.js")
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // MySQL configuration
 const connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'lkjh0987@#ASDF',
-  database: 'KLIV',
+  password: process.env.BACKEND_PASSWORD,
+  database: process.env.BACKEND_DATABASE,
 });
+
 
 // Create a storage engine for multer
 const storage = multer.diskStorage({
@@ -36,7 +46,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../white-website/build')));
+// app.use(express.static(path.join(__dirname, '../frontende/build')));
+app.use(express.static(path.join(__dirname, "../frontend/build")));
 
 // Handle MySQL connection errors
 connection.connect((error) => {
@@ -49,25 +60,52 @@ connection.connect((error) => {
 });
 
 // Endpoint for receiving reviews
-app.post('/api/reviews', _fileupload.upload.single('image'), (req, res) => {
+app.post('/api/reviews', upload.single("image"), async (req, res) => {
   const { name, designation, comment, stars } = req.body;
-  const imagePath = req.file.path; // Get the path of the uploaded image
-  // Store the review and image path in the database
-  const sql = 'INSERT INTO reviews (name, designation, comment, stars, image) VALUES (?, ?, ?, ?, ?)';
-  connection.query(sql, [name, designation, comment, stars, imagePath], (error, results) => {
+
+  // Set initial confirmation status to false
+  const confirmed = false;
+
+  let fileData = {};
+
+  if (req.file) {
+    let uploadFile = {}; // Initialize uploadFile with an empty object
+    try {
+      uploadFile = await cloudinary.uploader.upload(req.file.path, {
+        folder: "MySQL Website",
+        resource_type: "image",
+      });
+    } catch (error) {
+      console.error('Error fetching reviews:', error);
+      return res.status(500).json({ error: 'Failed to load image' });
+    }
+
+    fileData = {
+      fileName: req.file.originalname,
+      filepath: uploadFile.secure_url,
+      fileType: req.file.mimetype,
+      fileSize: fileSizeFormatter(req.file.size, 2),
+    };
+  }
+
+  const imagePath = fileData.filepath;
+
+  const sql = 'INSERT INTO reviews (name, designation, comment, stars, image, confirmed) VALUES (?, ?, ?, ?, ?, ?)';
+  connection.query(sql, [name, designation, comment, stars, imagePath, confirmed], (error, results) => {
     if (error) {
       console.error('Error storing review:', error);
-      res.status(500).json({ error: 'Failed to store review' });
-    } else {
-      res.sendStatus(200);
+      return res.status(500).json({ error: 'Failed to store review' });
     }
+    // No need for an else block here
+
+    // Send success response
+    return res.sendStatus(200);
   });
 });
 
 
-// Endpoint for fetching reviews
+
 app.get('/api/reviews', (req, res) => {
-  // Retrieve reviews from the database
   const sql = 'SELECT * FROM reviews';
   connection.query(sql, (error, results) => {
     if (error) {
@@ -82,6 +120,7 @@ app.get('/api/reviews', (req, res) => {
           comment: review.comment,
           stars: review.stars,
           image: review.image,
+          confirmed: review.confirmed,
         };
       });
       res.status(200).json(reviews);
@@ -89,28 +128,55 @@ app.get('/api/reviews', (req, res) => {
   });
 });
 
-
-// Endpoint for updating review display status
+// Endpoint for updating review confirmation status
 app.put('/api/reviews/:id', (req, res) => {
-  // Extract review ID and new display status from the request parameters and body
+  // Extract review ID and new confirmation status from the request parameters and body
   const { id } = req.params;
-  const { displayStatus } = req.body;
+  const { confirmed } = req.body;
 
-  // Update the review display status in the database
+  // Update the review confirmation status in the database
   connection.query(
-    'UPDATE reviews SET displayStatus = ? WHERE id = ?',
-    [displayStatus, id],
+    'UPDATE reviews SET confirmed = ? WHERE id = ?',
+    [confirmed, id],
     (error, results) => {
       if (error) {
         console.error('Error updating review:', error);
         res.sendStatus(500);
       } else {
-        console.log('Review updated successfully');
+        console.log('Review confirmation status updated successfully');
         res.sendStatus(200);
       }
     }
   );
 });
+
+// Endpoint for updating review confirmation status
+app.put('/api/reviews/:id/confirm', (req, res) => {
+  // Extract review ID and current confirmation status from the request parameters and body
+  const { id } = req.params;
+  const { confirmed } = req.body;
+
+  // Calculate the new confirmation status as the opposite of the current status
+  console.log(confirmed);
+  const newConfirmationStatus = (confirmed === 0) ? 1 : 0;
+  console.log(newConfirmationStatus);
+
+  // Update the review confirmation status in the database
+  connection.query(
+    'UPDATE reviews SET confirmed = ? WHERE id = ?',
+    [newConfirmationStatus, id],
+    (error, results) => {
+      if (error) {
+        console.error('Error updating review confirmation status:', error);
+        res.sendStatus(500);
+      } else {
+        console.log('Review confirmation status updated successfully');
+        res.sendStatus(200);
+      }
+    }
+  );
+});
+
 
 // Endpoint for deleting a review
 app.delete('/api/reviews/:id', (req, res) => {
@@ -134,13 +200,18 @@ app.delete('/api/reviews/:id', (req, res) => {
   });
 });
 
+app.get('/api/reviews', (req, res) => {
+  const sql = 'SELECT * FROM reviews WHERE confirmed = true';
+  // Rest of the code...
+});
 
 // Handle React routing, return all requests to React app
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../white-website/build', 'index.html'));
+  res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 });
+
 
 // Start the server
 app.listen(3000, () => {
-  console.log('Server listening on port 3000');
+  console.log('Server listening on port 3000');
 });

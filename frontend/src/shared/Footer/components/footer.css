@@ -1,0 +1,158 @@
+/* Footer.css */
+
+footer {
+  background-color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  box-shadow: 0px -5px 10px rgba(0, 0, 0, 0.1);
+  position: relative; /* Added */
+}
+
+.footer-section {
+  flex: 1 1 auto;
+  margin-bottom: 20px;
+}
+
+.footer-section p{
+  font-size: 16px;
+  font-style: italic;
+  margin-right: 20px;
+  padding-right: 50px ;
+}
+
+
+.footer-left span {
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.useful-links {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  border-right: none;
+  justify-content: flex-end;
+}
+
+.useful-links li,
+.our-services li {
+  margin-bottom: 10px;
+}
+
+.contact-us p {
+  margin: 5px 0;
+}
+
+/* Updated code for footer-left section */
+.footer-section:nth-child(1) {
+  flex: 1 1 50%;
+}
+
+/* Updated code for useful-links section */
+.useful-links {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  border-right: none;
+  justify-content: flex-end;
+}
+
+/* Updated code for our-services section */
+.our-services {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  border-left: none;
+}
+
+/* Updated code for contact-us section */
+.contact-us {
+  flex: 1 1 auto;
+}
+
+/* Updated code for newsletter section */
+.newsletter-container {
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin-bottom: 1px;
+}
+
+.newsletter-form {
+  display: flex;
+  justify-content: center;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  align-items: center; 
+  flex-direction: row;
+}
+
+.newsletter-form input[type='email'] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 5px;
+  min-width: 150px;
+  flex-grow: 1;
+}
+
+/* Media query for screens with a minimum width of 300px */
+@media (max-width: 400px) {
+  .newsletter-form {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .newsletter-form input[type='email'] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 150px;
+    flex-grow: 1;
+    margin-bottom: 5px;
+  }
+}
+
+/* Updated code for copyright section */
+.footer-section:last-child {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 100%;
+}
+
+.footer-section:last-child .copyright {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  width: 100%;
+}
+
+/* Added code for social media icons */
+.social-media {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+}
+
+.social-media li {
+  margin-right: 10px;
+}
+
+.social-media li a{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  color: #888;
+  text-align: center;
+  line-height: 40px;
+  font-size: 16px;
+}
+
+.social-media li a:hover {
+  background-color: #000;
+  color: #fff;
+}

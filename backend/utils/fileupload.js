@@ -1,7 +1,4 @@
-exports.__esModule = true;
-exports.upload = exports.fileSizeFormatter = void 0;
-
-const multer = require('multer');
+import multer from "multer";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -27,12 +24,7 @@ function fileFilter(req, file, cb) {
   }
 }
 
-const upload = multer({
-    storage,
-    fileFilter,
-});
-
-exports.upload = upload;
+const upload = multer({ storage, fileFilter });
 
 const fileSizeFormatter = (bytes, decimal) => {
   if (bytes === 0) {
@@ -48,4 +40,4 @@ const fileSizeFormatter = (bytes, decimal) => {
   )
 };
 
-exports.fileSizeFormatter = fileSizeFormatter;
+export { upload, fileSizeFormatter};

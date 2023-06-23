@@ -6,19 +6,16 @@
 
 
 #Frontend installation making a build
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-Go to the project directory and insure all the packages are installed hence use:
+Go to the project directory and ensure all the packages are installed hence use:
 
 ### `npm install`
-
 To install all the frontend packages in your system
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 In the project directory, you can run:
-
 ### `npm start`
 
 Runs the app in the development mode.\

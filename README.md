@@ -1,7 +1,7 @@
 # Installation to run this on your local system
 
 
-#Frontend installation making a build
+# Frontend installation making a build
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
@@ -32,7 +32,7 @@ Now backend can read the build file to get to the frontend.
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 
-#Backend installation making your accounts.
+# Backend installation making your accounts.
 
 
 

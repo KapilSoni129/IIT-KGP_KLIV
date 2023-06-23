@@ -3,6 +3,7 @@
 
 # Frontend installation making a build
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Please ensure that you have already installed NodeJS in your system. If not, here is the [Link](https://nodejs.org/en/download).
 
 ## Available Scripts
 
@@ -34,6 +35,31 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 # Backend installation making your accounts.
 
+For the backend of this project, we have used `Node.js` and `Express.js.`
+
+As a database in this project, MySQL is used. Please make sure you have set up MySQL in your system. If not, here is the [Link](https://dev.mysql.com/downloads/installer/)
+
+For storing Images in my backend, we have used Cloudinary. It is a cloud-based media management platform that provides comprehensive tools and services for managing, manipulating, optimizing, and delivering media files, including images, videos, and documents. We have used it to store pictures of reviews in our backend.
+Sign In and make an account in Cloudinary. When Logged In go to Getting Started where you will see your credentials like this:
+
+
+
+
+## Setting Up accounts
+Make a file of .env in the same directory, and please add these five credentials you can access.
+
+MYSQL_DATABASE (Name of database where your table of reviews is made and stored)
+MYSQL_PASSWORD (Password of your MySQL that you have set up in your localhost:3000)
+CLOUDINARY_CLOUD_NAME ()
+CLOUDINARY_API_KEY 
+CLOUDINARY_API_SECRET 
+
+
+## Available Scripts
+
+Go to the project directory of the backend using "cd backend " and ensure all the packages are installed hence use the following:
+### `npm install.`
+To install all the backend packages in your system
 
 
 

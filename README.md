@@ -40,6 +40,7 @@ For the backend of this project, we have used `Node.js` and `Express.js.`
 As a database in this project, MySQL is used. Please make sure you have set up MySQL in your system. If not, here is the [Link](https://dev.mysql.com/downloads/installer/)
 
 For storing Images in my backend, we have used Cloudinary. It is a cloud-based media management platform that provides comprehensive tools and services for managing, manipulating, optimising, and delivering media files, including images, videos, and documents. We have used it to store pictures of reviews in our backend.
+
 Sign In and make an account in Cloudinary. When Logged In, go to Getting Started, where you will see your credentials like this:
 
 ![My Image](./frontend/public/cloudi.jpg)
@@ -47,15 +48,16 @@ Sign In and make an account in Cloudinary. When Logged In, go to Getting Started
 ## Setting Up accounts
 Make a file of .env in the same directory, and please add these five credentials you can access.
 
-MYSQL_DATABASE (Name of database where your table of reviews is made and stored)
-MYSQL_PASSWORD (Password of your MySQL that you have set up in your localhost:3000)
-CLOUDINARY_CLOUD_NAME (Name from your Cloudinary account - refer to the above image)
-CLOUDINARY_API_KEY (Key from your Cloudinary account - refer to the above image)
-CLOUDINARY_API_SECRET (Api-secret from your Cloudinary account - refer to the above image)
+- MYSQL_DATABASE: Name of the database where your table of reviews is made and stored.
+- MYSQL_PASSWORD: Password of your MySQL that you have set up in your localhost:3000.
+- CLOUDINARY_CLOUD_NAME: Name from your Cloudinary account - refer to the above image.
+- CLOUDINARY_API_KEY: Key from your Cloudinary account - refer to the above image.
+- CLOUDINARY_API_SECRET: Api-secret from your Cloudinary account - refer to the above image.
 
 After this is set, connect your database and make a table of name "reviews" there. 
 You can use this command in your MySQL WorkBench to make a table. 
 
+```
 use MYSQL_DATABASE(Name of the database)
 CREATE TABLE reviews (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -66,13 +68,14 @@ CREATE TABLE reviews (
   image VARCHAR(255),
   confirmed TINYINT(1) DEFAULT 0
 );
-
+```
 
 ## Available Scripts
 
 Go to the project directory of the backend using "cd backend " and ensure all the packages are installed hence use the following:
 ### `npm install.`
-To install all the backend packages in your system
+To install all the backend packages in your system in packages.json. 
+
 ### `node server.js .`
 To run your backend to connect with localhost:3000. Now the project is up and running. You can get what errors are there in the backend part of your project.
 Go to https://localhost:3000

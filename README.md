@@ -61,10 +61,11 @@ You can use this command in your MySQL WorkBench to make a table.
 use MYSQL_DATABASE(Name of the database)
 CREATE TABLE reviews (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  comment VARCHAR(500) NOT NULL,
-  stars INT NOT NULL,
   name VARCHAR(100) NOT NULL,
   designation VARCHAR(100) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  comment VARCHAR(500) NOT NULL,
+  stars INT NOT NULL,
   image VARCHAR(255),
   confirmed TINYINT(1) DEFAULT 0
 );

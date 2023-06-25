@@ -1,28 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './login.css';
 
-const ADMIN_ID = 'FedERA';
-const ADMIN_PASSWORD = 'FedERA';
+// const ADMIN_ID = 'FedERA';
+// const ADMIN_PASSWORD = 'FedERA';
 
-function LoginForm(){
+function LoginForm({onLogin}){
     const navigate = useNavigate();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-    
-        // Simulating login validation
-        if (username === ADMIN_ID && password === ADMIN_PASSWORD) {
-          // Redirect to admin page
-          navigate('/adminpage');
-        } else {
-          // Show error message
-          setError('Wrong username or password');
-        }
-      };
+      e.preventDefault();
+      // Simulating login validation
+      if (username === process.env.REACT_APP_ADMIN_ID && password === process.env.REACT_APP_ADMIN_PASSWORD) {
+        // Redirect to admin page
+        localStorage.setItem('isLoggedIn', 'true');
+        // eslint-disable-next-line no-undef
+        onLogin(); // Call the onLogin function from props
+        navigate('/adminpage');
+      } else {
+        // Show error message
+        setError('Wrong username or password');
+      }
+    };
+
+    useEffect(() => {
+      // Check login status on component mount
+      const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+  
+      if (isLoggedIn) {
+        onLogin(); // Call the onLogin prop function
+      }
+    }, [onLogin]);
 
   return (
     <div className='fill'>

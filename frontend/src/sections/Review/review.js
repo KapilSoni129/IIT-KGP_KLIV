@@ -7,6 +7,7 @@ import './review.css';
 function Review() {
   const [name, setName] = useState('');
   const [designation, setDesignation] = useState('');
+  const [email, setEmail] = useState('');
   const [comment, setComment] = useState('');
   const [stars, setStars] = useState(0);
   const [image, setImage] = useState(null);
@@ -23,6 +24,10 @@ function Review() {
     setDesignation(e.target.value);
   };
 
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  }
+
   const handleCommentChange = (e) => {
     setComment(e.target.value);
   };
@@ -36,14 +41,20 @@ function Review() {
     setImage(file);
   };
 
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalMessage('');
+    window.location.reload(); // Refresh the page
+  };
+
+
   const handleSubmit = async () => {
     // Check if any required field is empty
-    if (!name || !designation || !comment || !stars) {
+    if (!name || !designation || !comment || !stars || !email) {
       setIsModalOpen(true);
       setModalMessage('Error. Please fill all the starred valeus.');
     }
-
-    try {
+    else{    try {
       // Create a new FormData object
       const formData = new FormData();
 
@@ -53,6 +64,7 @@ function Review() {
       // Append other review data to the FormData
       formData.append('name', name);
       formData.append('designation', designation);
+      formData.append('email', email);
       formData.append('comment', comment);
       formData.append('stars', stars);
 
@@ -78,6 +90,7 @@ function Review() {
     } catch (error) {
       console.error('Error submitting review:', error);
     }
+  }
   };
 
 
@@ -104,6 +117,13 @@ function Review() {
                 onChange={handleDesignationChange}
                 placeholder="Enter your affiliation *"
                 className="designation-input"
+              />
+              <input
+                type="text"
+                value={email}
+                onChange={handleEmailChange}
+                placeholder="Enter your Email*"
+                className="email-input"
               />
             </div>
             <div className='row-area'>      
@@ -149,21 +169,22 @@ function Review() {
           </span>
           <span className="required-field">*</span>
         </div>
-        <p>Profile photo:
-        <input
-          type="file"
-          onChange={handleImageChange}
-          className="image-input"
-        /></p>
-        <button onClick={handleSubmit} className="card-button">
-          Submit
-        </button>
         </center>
+        <center><p>Profile photo:
+          <input
+            type="file"
+            onChange={handleImageChange}
+            className="image-input"
+          />
+        </p></center>
+        <center><button onClick={handleSubmit} className="card-button">
+          Submit
+        </button></center>
     </div>
-    <Modal className="Modal" isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)}>
+    <Modal className="Modal" isOpen={isModalOpen} onRequestClose={closeModal}>
       <h2>{modalMessage.startsWith('Error') ? 'Error' : 'Success'}</h2>
       <p>{modalMessage}</p>
-      <center><button className='card-button' onClick={() => setIsModalOpen(false)}>Close</button></center>
+      <center><button className='card-button' onClick={closeModal}>Close</button></center>
     </Modal>
     </div>
   );

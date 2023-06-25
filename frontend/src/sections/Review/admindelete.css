@@ -36,7 +36,7 @@
     background-color: #fff;
     margin: 10px;
     width: 350px;
-    height: 300px;
+    height: 400px;
 }
 
 .admin-content p{
@@ -91,6 +91,22 @@
     color: #ffc400;
   }
 
+
+
+.card-button{
+    background-color: #0066CC;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
 .admin-content .review-image {
     position: absolute;
     bottom: 10px;

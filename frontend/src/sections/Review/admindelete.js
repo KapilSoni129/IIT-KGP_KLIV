@@ -4,13 +4,14 @@ import Modal from 'react-modal';
 
 import './admindelete.css';
 
-function Rev() {
+function Rev({ onLogin }) {
   const [reviews, setReviews] = useState([]);
   const [confirmedReviews, setConfirmedReviews] = useState([]);
   const [unconfirmedReviews, setUnconfirmedReviews] = useState([]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+
 
   useEffect(() => {
     fetchReviews();
@@ -24,7 +25,6 @@ function Rev() {
         image: review.image, // Use the absolute image URL directly
       }));
       setReviews(reviewsData);
-      console.log(reviewsData);
       separateReviews(reviewsData);
     } catch (error) {
       console.error('Error fetching reviews:', error);
@@ -34,8 +34,6 @@ function Rev() {
   const separateReviews = (reviewsData) => {
     const confirmed = reviewsData.filter((review) => review.confirmed);
     const unconfirmed = reviewsData.filter((review) => !review.confirmed);
-    console.log(confirmed);
-    console.log(unconfirmed);
     setConfirmedReviews(confirmed);
     setUnconfirmedReviews(unconfirmed);
   };
@@ -81,7 +79,13 @@ function Rev() {
       console.error('Error confirming review:', error);
     }
   };
-  
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalMessage('');
+    window.location.reload(); // Refresh the page
+    onLogin(); // Call the onLogin prop function
+  };
    
   return (
     <div className="admin-reviews">
@@ -93,7 +97,7 @@ function Rev() {
         <div><center><h3>Displayed Reviews</h3></center>
         <div className="admin-container">
           {confirmedReviews.map((review, index) => (
-            <div key={index} className="admin-content">
+            <div key={`confirmed-${index}`} className="admin-content">
               <center>
                 <button
                   className="card-button"
@@ -107,6 +111,14 @@ function Rev() {
                 >
                   Remove Confirmation
                 </button>
+                <h5>{review.email}</h5>
+                {/* <a className="card-button" href={`mailto:${review.email}`}>Mail to the user</a> */}
+                {/* <button
+                  className="card-button"
+                  onClick={() => handleMailToUser(review.email)}
+                >
+                  Mail to the user
+                </button> */}
               </center>
               <p>{review.comment}</p>
               <h3>{review.name}</h3>
@@ -128,7 +140,7 @@ function Rev() {
         <div><center><h3>Unconfirmed Reviews</h3></center>
         <div className="admin-container">
           {unconfirmedReviews.map((review, index) => (
-            <div key={index} className="admin-content">
+            <div key={`unconfirmed-${index}`} className="admin-content">
               <center>
                 <button
                   className="card-button"
@@ -142,6 +154,13 @@ function Rev() {
                 >
                   Give confirmation
                 </button>
+                <h5>{review.email}</h5>
+                {/* <button
+                  className="card-button"
+                  onClick={() => handleMailToUser(review.email)}
+                >
+                  Mail to the user
+                </button> */}
               </center>
               <p>{review.comment}</p>
               <h3>{review.name}</h3>
@@ -159,10 +178,10 @@ function Rev() {
         </div>
         </div>
       )}
-    <Modal className="Modal" isOpen={isModalOpen} onRequestClose={() => setIsModalOpen(false)}>
+    <Modal className="Modal" isOpen={isModalOpen} onRequestClose={closeModal}>
       <h2>Admin action</h2>
       <p>{modalMessage}</p>
-      <center><button className='card-button' onClick={() => setIsModalOpen(false)}>Close</button></center>
+      <center><button className='card-button' onClick={closeModal}>Close</button></center>
     </Modal>
     </div>
   );

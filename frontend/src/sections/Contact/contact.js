@@ -11,12 +11,9 @@ function Contact() {
             <hr style={{ width: '40%', borderTop: '2px solid #ccc' }} />
         </center>
         <div className="contact-card">
-            
             <div className="map-container">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d21081.92621577586!2d87.28761773871177!3d22.312537992978694!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a1d440255555547%3A0x6f2f20dd0c0d6793!2sIndian%20Institute%20of%20Technology%20Kharagpur!5e0!3m2!1sen!2sin!4v1686035753384!5m2!1sen!2sin" 
-                    width="100%"
-                    height="720px"
                     frameBorder="0"
                     allowFullScreen
                     title="Map"

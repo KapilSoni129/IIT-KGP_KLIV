@@ -61,7 +61,7 @@ connection.connect((error) => {
 
 // Endpoint for receiving reviews
 app.post('/api/reviews', upload.single("image"), async (req, res) => {
-  const { name, designation, comment, stars } = req.body;
+  const { name, designation, email, comment, stars } = req.body;
 
   // Set initial confirmation status to false
   const confirmed = false;
@@ -90,8 +90,8 @@ app.post('/api/reviews', upload.single("image"), async (req, res) => {
 
   const imagePath = fileData.filepath;
 
-  const sql = 'INSERT INTO reviews (name, designation, comment, stars, image, confirmed) VALUES (?, ?, ?, ?, ?, ?)';
-  connection.query(sql, [name, designation, comment, stars, imagePath, confirmed], (error, results) => {
+  const sql = 'INSERT INTO reviews (name, designation, email, comment, stars, image, confirmed) VALUES (?, ?, ?, ?, ?, ?, ?)';
+  connection.query(sql, [name, designation, email, comment, stars, imagePath, confirmed], (error, results) => {
     if (error) {
       console.error('Error storing review:', error);
       return res.status(500).json({ error: 'Failed to store review' });
@@ -117,6 +117,7 @@ app.get('/api/reviews', (req, res) => {
           id: review.id,
           name: review.name,
           designation: review.designation,
+          email: review.email,
           comment: review.comment,
           stars: review.stars,
           image: review.image,
@@ -189,7 +190,8 @@ app.delete('/api/reviews/:id', (req, res) => {
 
   // Delete the review from the database
   const sql = 'DELETE FROM reviews WHERE id = ?';
-  connection.query(sql, [id], (error, results) => {
+  const sql2 = 'ALTER TABLE table_name AUTO_INCREMENT = 0;'
+  connection.query(sql, sql2, [id], (error, results) => {
     if (error) {
       console.error('Error deleting review:', error);
       res.sendStatus(500);

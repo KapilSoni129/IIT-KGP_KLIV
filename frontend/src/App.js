@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Routes, Route, Navigate, BrowserRouter as Router } from 'react-router-dom';
 
 import './App.css';
@@ -17,10 +17,20 @@ import Verification from './sections/Services/Modules/verification';
 
 function App() {
 
-  // useEffect(() => {
-  //   const aboutContainer = document.querySelector('.about-container');
-  //   aboutContainer.classList.add('fade-in');
-  // }, []);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  useEffect(() => {
+    // Check login status on component mount
+    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
+
+    if (isLoggedIn) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -30,8 +40,8 @@ function App() {
       <Routes>
             <Route path="/" element={<Landing />} />
             <Route path="/review" element={<Review />} />
-            <Route path="/admin" element={<LoginForm />} />
-            <Route path="/adminpage" element={<Adminpage />} />
+            <Route path="/admin" element={<LoginForm onLogin={handleLogin}/>}/>
+            <Route path="/adminpage" element={isLoggedIn ? <Adminpage onLogin={handleLogin} /> : <Navigate to="/admin" replace={true}/>} />
             <Route path="/module/carbon" element={<Carbon />}/>
             <Route path="/module/intermediate" element={<Intermediate />}/>
             <Route path="/module/timeout" element={<Timeout />}/>

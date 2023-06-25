@@ -5,6 +5,10 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 Please ensure that you have already installed NodeJS in your system. If not, here is the [Link](https://nodejs.org/en/download).
 
+Make a file of .env in the same directory of src and public folder, and please add these five credentials you can access.
+- REACT_APP_ADMIN_ID : ID for ADMIN.
+- REACT_APP_ADMIN_PASSWORD : Password for ADMIN.
+  
 ## Available Scripts
 
 Go to the project directory of the frontend using "cd frontend " and ensure all the packages are installed hence use the following:
@@ -46,7 +50,7 @@ Sign In and make an account in Cloudinary. When Logged In, go to Getting Started
 ![My Image](./frontend/public/cloudi.jpg)
 
 ## Setting Up accounts
-Make a file of .env in the same directory, and please add these five credentials you can access.
+Make a file of .env in the same directory of server.js, and please add these five credentials you can access.
 
 - MYSQL_DATABASE: Name of the database where your table of reviews is made and stored.
 - MYSQL_PASSWORD: Password of your MySQL that you have set up in your localhost:3000.

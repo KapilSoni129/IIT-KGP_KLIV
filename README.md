@@ -5,7 +5,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 Please ensure that you have already installed NodeJS in your system. If not, here is the [Link](https://nodejs.org/en/download).
 
-Make a file of .env in the same directory of src and public folder, and please add these five credentials you can access.
+Make a file of .env in the same directory of src and public folder, and please add these two credentials you can access.
 - REACT_APP_ADMIN_ID : ID for ADMIN.
 - REACT_APP_ADMIN_PASSWORD : Password for ADMIN.
   

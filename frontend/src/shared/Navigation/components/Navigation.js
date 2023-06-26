@@ -1,5 +1,6 @@
 import {React, useState} from 'react';
 import { BrowserRouter as Router, useNavigate } from 'react-router-dom';
+import { FaGithub, FaArrowUp } from 'react-icons/fa';
 
 import './Navigation.css';
 
@@ -12,6 +13,10 @@ const Navigation = () => {
       top: 0,
       behavior: 'smooth',
     });
+  };
+
+  const handleGithubClick = () => {
+    window.open('https://github.com/your-repository-url', '_blank');
   };
 
   const handleNavigation = () => {
@@ -59,7 +64,7 @@ const Navigation = () => {
           </button>
         </li>
       </ul>
-      <div className="scroll-to-top" onClick={handleScrollToTop}>
+      
       <div className={`sidebar ${sidebarActive ? 'active' : ''}`}>
         <ul>
         <li>
@@ -94,6 +99,13 @@ const Navigation = () => {
         </li>
         </ul>
       </div>
+
+      <div className="scroll-to-top" onClick={handleScrollToTop}>
+        <FaArrowUp className='arrow-icon'/>
+      </div>
+
+      <div className="github-button" onClick={handleGithubClick}>
+        <FaGithub className="github-icon" />
       </div>
     </nav>
   );

@@ -189,15 +189,29 @@ app.delete('/api/reviews/:id', (req, res) => {
   }
 
   // Delete the review from the database
-  const sql = 'DELETE FROM reviews WHERE id = ?';
-  const sql2 = 'ALTER TABLE table_name AUTO_INCREMENT = 0;'
-  connection.query(sql, sql2, [id], (error, results) => {
+  const deleteSql = 'DELETE FROM reviews WHERE id = ?';
+  const resetAutoIncrementSql = 'ALTER TABLE reviews AUTO_INCREMENT = 1';
+
+  connection.query(deleteSql, [id], (error, deleteResults) => {
     if (error) {
       console.error('Error deleting review:', error);
       res.sendStatus(500);
     } else {
-      console.log('Review deleted successfully');
-      res.sendStatus(200);
+      // Check if any rows were affected by the delete operation
+      if (deleteResults.affectedRows === 0) {
+        return res.status(404).json({ error: 'Review not found' });
+      }
+
+      // Reset the auto-increment value
+      connection.query(resetAutoIncrementSql, (resetError) => {
+        if (resetError) {
+          console.error('Error resetting auto-increment value:', resetError);
+          res.sendStatus(500);
+        } else {
+          console.log('Review deleted successfully');
+          res.sendStatus(200);
+        }
+      });
     }
   });
 });
